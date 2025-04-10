@@ -1,0 +1,27 @@
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to top right, #4dabf7, #74c0fc);
+  color: #fff;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+button {
+  background: white;
+  color: #1c7ed6;
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
