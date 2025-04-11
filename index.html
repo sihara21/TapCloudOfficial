@@ -183,11 +183,28 @@
   }
 
   function getLeaderboard() {
-    db.ref("leaderboard").once("value", (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
-    });
-  }
+  db.ref("leaderboard").once("value", (snapshot) => {
+    const data = snapshot.val();
+    const leaderboardDiv = document.getElementById("leaderboard");
+    leaderboardDiv.innerHTML = "<h2>Leaderboard</h2>"; // reset dulu
+
+    if (data) {
+      const sorted = Object.values(data).sort((a, b) => b.tcl - a.tcl);
+      sorted.forEach((entry, index) => {
+        const item = document.createElement("div");
+        item.className = "leaderboard-item";
+        item.textContent = `${index + 1}. ${entry.username} - ${entry.tcl} TCL`;
+        leaderboardDiv.appendChild(item);
+      });
+    } else {
+      const item = document.createElement("div");
+      item.className = "leaderboard-item";
+      item.textContent = "No data yet";
+      leaderboardDiv.appendChild(item);
+    }
+  });
+}
+
 </script>
 
 </body>
