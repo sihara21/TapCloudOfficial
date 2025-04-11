@@ -178,5 +178,36 @@
     // Kamu bisa update ini dari server nanti
     document.getElementById('inviteCounter').innerText = totalInvites;
   </script>
+  <script>
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBX5hWveIazBgPfQX9UBC-mH8mAP3xOLtQ",
+    authDomain: "tapcloudofficial.firebaseapp.com",
+    projectId: "tapcloudofficial",
+    storageBucket: "tapcloudofficial.appspot.com",
+    messagingSenderId: "64443616040",
+    appId: "1:64443616040:web:9e305bc90611eae48a1e1d",
+    measurementId: "G-XWX6DT2KWG"
+  };
+
+  // Inisialisasi Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  function addUserToLeaderboard(username, tcl) {
+    db.ref("leaderboard/" + username).set({
+      username: username,
+      tcl: tcl
+    });
+  }
+
+  function getLeaderboard() {
+    db.ref("leaderboard").once("value", (snapshot) => {
+      const data = snapshot.val();
+      console.log(data);
+    });
+  }
+</script>
+
 </body>
 </html>
