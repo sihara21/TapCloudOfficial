@@ -118,7 +118,7 @@
     <div class="page" id="invite">
       <h2>Invite</h2>
       <div class="invite-info">Your referral link:</div>
-      <div class="invite-info">0</div>
+      <div class="invite-info" id="referralLink">0</div>
       <div class="invite-info">Total Invites: <span id="inviteCounter">0</span></div>
     </div>
 
@@ -211,6 +211,24 @@
   });
 }
 
+</script>
+  <script>
+  window.addEventListener("DOMContentLoaded", function () {
+    if (window.Telegram && window.Telegram.WebApp) {
+      Telegram.WebApp.ready();
+
+      const user = Telegram.WebApp.initDataUnsafe.user;
+      if (user && user.id) {
+        const userId = user.id;
+        const referralLink = `https://t.me/Siharaarabot?start=${userId}`;
+        document.getElementById("referralLink").innerText = referralLink;
+      } else {
+        document.getElementById("referralLink").innerText = "User ID not found. Please open in Telegram.";
+      }
+    } else {
+      document.getElementById("referralLink").innerText = "Telegram WebApp not detected.";
+    }
+  });
 </script>
 
 </body>
