@@ -144,20 +144,26 @@
     let totalInvites = 0;
 
     function handleTap() {
-      tclCount++;
-      document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
-      document.getElementById('profileTCL').innerText = tclCount;
-    }
+  tclCount++;
+  document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
+  document.getElementById('profileTCL').innerText = tclCount;
+
+  // Simpan ke leaderboard
+  const username = 'Telegram.WebApp.initDataUnsafe.user'; // nanti bisa diganti auto ambil dari Telegram
+  addUserToLeaderboard(username, tclCount);
+}
+
 
     function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.getElementById(pageId).classList.add('active');
-    }
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+  document.getElementById(pageId).classList.add('active');
 
-    // Kamu bisa update ini dari server nanti
-    document.getElementById('inviteCounter').innerText = totalInvites;
+  if (pageId === 'leaderboard') {
+    getLeaderboard(); // load saat buka leaderboard
+  }
+}
   </script>
   <script>
   // Firebase config
