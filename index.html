@@ -94,6 +94,7 @@
       <div class="page active" id="home">
         <button class="tap-button" onclick="handleTap()">TAP TO FARM TCL</button>
         <div class="info-box" id="tapCounter">TCL Collected: 0</div>
+        <div class="info-box" id="userCounter">Total Users: 1</div>
       </div>
 
       <!-- Tasks -->
@@ -117,6 +118,7 @@
         <h2>Invite</h2>
         <div class="invite-info">Your referral link:</div>
         <div class="invite-info">https://t.me/Siharaarabot?start=123456</div>
+        <div class="invite-info" id="inviteCounter">Total Invites: 0</div>
       </div>
 
       <!-- Profile -->
@@ -137,29 +139,26 @@
     </div>
 
     <script>
-      <script>
-  let tclCount = 0;
-  let totalUsers = 1; // misalnya sudah ada 1 user
-  let totalInvites = 0;
+      let tclCount = 0;
+      let totalUsers = 0;
+      let totalInvites = 0;
 
-  function handleTap() {
-    tclCount++;
-    totalUsers++;       // Tambah 1 user
-    totalInvites += 2;  // Misalnya setiap tap dianggap 2 undangan masuk
+      function handleTap() {
+        tclCount++;
+        totalUsers++;
+        totalInvites += 0;
 
-    document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
-    document.getElementById('totalUsers').innerText = `Total Users: ${totalUsers}`;
-    document.getElementById('totalInvites').innerText = `Total Invites: ${totalInvites}`;
-  }
+        document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
+        document.getElementById('userCounter').innerText = `Total Users: ${totalUsers}`;
+        document.getElementById('inviteCounter').innerText = `Total Invites: ${totalInvites}`;
+      }
 
-  function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => {
-      page.classList.remove('active');
-    });
-    document.getElementById(pageId).classList.add('active');
-  }
-</script>
-
+      function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+      }
     </script>
   </body>
 </html>
