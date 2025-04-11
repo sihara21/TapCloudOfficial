@@ -60,26 +60,79 @@
         margin-top: 30px;
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
       }
 
       .nav a {
         text-decoration: none;
         color: #4fa9ff;
         font-weight: 600;
+        margin: 5px 10px;
+        cursor: pointer;
+      }
+
+      .page {
+        display: none;
+      }
+
+      .active {
+        display: block;
+      }
+
+      .task-item, .leaderboard-item, .invite-info, .profile-info {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
       }
     </style>
   </head>
   <body>
     <div id="root">
       <h1>TapCloud</h1>
-      <button class="tap-button" onclick="handleTap()">TAP TO FARM TCL</button>
-      <div class="info-box" id="tapCounter">TCL Collected: 0</div>
 
+      <!-- Home -->
+      <div class="page active" id="home">
+        <button class="tap-button" onclick="handleTap()">TAP TO FARM TCL</button>
+        <div class="info-box" id="tapCounter">TCL Collected: 0</div>
+      </div>
+
+      <!-- Tasks -->
+      <div class="page" id="tasks">
+        <h2>Tasks</h2>
+        <div class="task-item">Join Telegram Channel - +10 TCL</div>
+        <div class="task-item">Follow Twitter - +15 TCL</div>
+        <div class="task-item">Invite 3 Friends - +30 TCL</div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="page" id="leaderboard">
+        <h2>Leaderboard</h2>
+        <div class="leaderboard-item">1. @user1 - 5000 TCL</div>
+        <div class="leaderboard-item">2. @user2 - 4300 TCL</div>
+        <div class="leaderboard-item">3. @user3 - 3800 TCL</div>
+      </div>
+
+      <!-- Invite -->
+      <div class="page" id="invite">
+        <h2>Invite</h2>
+        <div class="invite-info">Your referral link:</div>
+        <div class="invite-info">https://t.me/Siharaarabot?start=123456</div>
+      </div>
+
+      <!-- Profile -->
+      <div class="page" id="profile">
+        <h2>Your Profile</h2>
+        <div class="profile-info">Username: @yourusername</div>
+        <div class="profile-info">Total TCL: 1200</div>
+      </div>
+
+      <!-- Navigation -->
       <div class="nav">
-        <a href="#tasks">Tasks</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#invite">Invite</a>
-        <a href="#profile">Profile</a>
+        <a onclick="showPage('home')">Home</a>
+        <a onclick="showPage('tasks')">Tasks</a>
+        <a onclick="showPage('leaderboard')">Leaderboard</a>
+        <a onclick="showPage('invite')">Invite</a>
+        <a onclick="showPage('profile')">Profile</a>
       </div>
     </div>
 
@@ -88,6 +141,13 @@
       function handleTap() {
         count++;
         document.getElementById('tapCounter').innerText = `TCL Collected: ${count}`;
+      }
+
+      function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+          page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
       }
     </script>
   </body>
