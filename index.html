@@ -1,164 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TapCloud</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TapCloud</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      body {
-        background-image: url('banner-TapCloud.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
+    body {
+      background-image: url('banner-TapCloud.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-      #root {
-        width: 100%;
-        max-width: 500px;
-        background-color: rgba(255, 255, 255, 0.95);
-        padding: 20px;
-        border-radius: 20px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        text-align: center;
-      }
+    #root {
+      width: 100%;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
 
-      .tap-button {
-        background: white;
-        border: 2px solid #4fa9ff;
-        border-radius: 50px;
-        padding: 20px 30px;
-        font-size: 1.5rem;
-        color: #4fa9ff;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-      }
+    .tap-button {
+      background: white;
+      border: 2px solid #4fa9ff;
+      border-radius: 50px;
+      padding: 20px 30px;
+      font-size: 1.5rem;
+      color: #4fa9ff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-      .tap-button:hover {
-        background-color: #4fa9ff;
-        color: white;
-      }
+    .tap-button:hover {
+      background-color: #4fa9ff;
+      color: white;
+    }
 
-      .info-box {
-        margin-top: 20px;
-        font-size: 1rem;
-        color: #333;
-      }
+    .info-box {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #333;
+    }
 
-      .nav {
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-      }
+    .nav {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
 
-      .nav a {
-        text-decoration: none;
-        color: #4fa9ff;
-        font-weight: 600;
-        margin: 5px 10px;
-        cursor: pointer;
-      }
+    .nav a {
+      text-decoration: none;
+      color: #4fa9ff;
+      font-weight: 600;
+      margin: 5px 10px;
+      cursor: pointer;
+    }
 
-      .page {
-        display: none;
-      }
+    .page {
+      display: none;
+    }
 
-      .active {
-        display: block;
-      }
+    .active {
+      display: block;
+    }
 
-      .task-item, .leaderboard-item, .invite-info, .profile-info {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        text-align: left;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="root">
-      <h1>TapCloud</h1>
+    .task-item, .leaderboard-item, .invite-info, .profile-info {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <h1>TapCloud</h1>
 
-      <!-- Home -->
-      <div class="page active" id="home">
-        <button class="tap-button" onclick="handleTap()">TAP TO FARM TCL</button>
-        <div class="info-box" id="tapCounter">TCL Collected: 0</div>
-        <div class="info-box" id="userCounter">Total Users: 1</div>
-      </div>
-
-      <!-- Tasks -->
-      <div class="page" id="tasks">
-        <h2>Tasks</h2>
-        <div class="task-item">Join Telegram Channel - +10 TCL</div>
-        <div class="task-item">Follow Twitter - +15 TCL</div>
-        <div class="task-item">Invite 3 Friends - +30 TCL</div>
-      </div>
-
-      <!-- Leaderboard -->
-      <div class="page" id="leaderboard">
-        <h2>Leaderboard</h2>
-        <div class="leaderboard-item">1. @user1 - 5000 TCL</div>
-        <div class="leaderboard-item">2. @user2 - 4300 TCL</div>
-        <div class="leaderboard-item">3. @user3 - 3800 TCL</div>
-      </div>
-
-      <!-- Invite -->
-      <div class="page" id="invite">
-        <h2>Invite</h2>
-        <div class="invite-info">Your referral link:</div>
-        <div class="invite-info">https://t.me/Siharaarabot?start=123456</div>
-        <div class="invite-info" id="inviteCounter">Total Invites: 0</div>
-      </div>
-
-      <!-- Profile -->
-      <div class="page" id="profile">
-        <h2>Your Profile</h2>
-        <div class="profile-info">Username: @yourusername</div>
-        <div class="profile-info">Total TCL: 1200</div>
-      </div>
-
-      <!-- Navigation -->
-      <div class="nav">
-        <a onclick="showPage('home')">Home</a>
-        <a onclick="showPage('tasks')">Tasks</a>
-        <a onclick="showPage('leaderboard')">Leaderboard</a>
-        <a onclick="showPage('invite')">Invite</a>
-        <a onclick="showPage('profile')">Profile</a>
-      </div>
+    <!-- Home -->
+    <div class="page active" id="home">
+      <button class="tap-button" onclick="handleTap()">TAP TO FARM TCL</button>
+      <div class="info-box" id="tapCounter">TCL Collected: 0</div>
     </div>
 
-    <script>
-      let tclCount = 0;
-      let totalUsers = 0;
-      let totalInvites = 0;
+    <!-- Tasks -->
+    <div class="page" id="tasks">
+      <h2>Tasks</h2>
+      <div class="task-item">Join Telegram Channel - +10 TCL</div>
+      <div class="task-item">Follow Twitter - +15 TCL</div>
+      <div class="task-item">Invite 3 Friends - +30 TCL</div>
+    </div>
 
-      function handleTap() {
-        tclCount++;
-        totalUsers++;
-        totalInvites += 0;
+    <!-- Leaderboard -->
+    <div class="page" id="leaderboard">
+      <h2>Leaderboard</h2>
+      <div class="leaderboard-item">No data yet</div>
+    </div>
 
-        document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
-        document.getElementById('userCounter').innerText = `Total Users: ${totalUsers}`;
-        document.getElementById('inviteCounter').innerText = `Total Invites: ${totalInvites}`;
-      }
+    <!-- Invite -->
+    <div class="page" id="invite">
+      <h2>Invite</h2>
+      <div class="invite-info">Your referral link:</div>
+      <div class="invite-info">https://t.me/Siharaarabot?start=123456</div>
+      <div class="invite-info">Total Invites: <span id="inviteCounter">0</span></div>
+    </div>
 
-      function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => {
-          page.classList.remove('active');
-        });
-        document.getElementById(pageId).classList.add('active');
-      }
-    </script>
-  </body>
+    <!-- Profile -->
+    <div class="page" id="profile">
+      <h2>Your Profile</h2>
+      <div class="profile-info">Username: @yourusername</div>
+      <div class="profile-info">Total TCL: <span id="profileTCL">0</span></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('tasks')">Tasks</a>
+      <a onclick="showPage('leaderboard')">Leaderboard</a>
+      <a onclick="showPage('invite')">Invite</a>
+      <a onclick="showPage('profile')">Profile</a>
+    </div>
+  </div>
+
+  <script>
+    let tclCount = 0;
+    let totalInvites = 0;
+
+    function handleTap() {
+      tclCount++;
+      document.getElementById('tapCounter').innerText = `TCL Collected: ${tclCount}`;
+      document.getElementById('profileTCL').innerText = tclCount;
+    }
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    // Kamu bisa update ini dari server nanti
+    document.getElementById('inviteCounter').innerText = totalInvites;
+  </script>
+</body>
 </html>
